@@ -27,6 +27,10 @@ python bot.py
 Usage
 Once the bot is running, it will automatically post the upcoming coding contest details in the specified Discord channel whenever it becomes ready.
 
+Result..
+![Screenshot 2024-05-26 181802](https://github.com/alururamesh521/ContestAlertBot-Hacky/assets/142136138/dce36b47-c913-4962-897b-5a20998e5ab9)
+
+
 Contributing
 Feel free to fork this repository and submit pull requests. For major changes, please open an issue first to discuss what you would like to change.
 
