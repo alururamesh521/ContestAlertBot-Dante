@@ -30,11 +30,6 @@ Once the bot is running, it will automatically post the upcoming coding contest 
 Result..
 
 
-![Screenshot 2024-05-26 181802](https://github.com/alururamesh521/ContestAlertBot-Hacky/assets/142136138/dce36b47-c913-4962-897b-5a20998e5ab9)
-
-
-
-
 
 
 ![Screenshot 2024-05-26 181502](https://github.com/alururamesh521/ContestAlertBot-Hacky/assets/142136138/98c011ac-730a-4125-b5a9-1209121284ce)
