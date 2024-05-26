@@ -27,7 +27,7 @@ python bot.py
 Usage
 Once the bot is running, it will automatically post the upcoming coding contest details in the specified Discord channel whenever it becomes ready.
 
-Result..
+Result.
 
 
 
