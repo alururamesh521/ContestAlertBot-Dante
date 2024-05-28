@@ -126,7 +126,7 @@ async def on_ready():
                     x=datetime.datetime.fromtimestamp(contest['startTime'])
                     if (x - now).total_seconds() >604800:
                         continue
-                    contest_info = f"**Title:** {contest['title']}\n**Start Time:** {start_time}\n**Link:** https://leetcode.com/contest/{contest['titleSlug']}\n"
+                    contest_info = f"**Name:** {contest['Name']}\n**Start Time:** {start_time}\n**Link:** https://leetcode.com/contest/{contest['titleSlug']}\n"
                     upcoming_contests_message += contest_info + "\n"
                     dict_of_contests[datetime.datetime.fromtimestamp(contest['startTime'])]=contest_info
 
