@@ -30,9 +30,11 @@ Once the bot is running, it will automatically post the upcoming coding contest 
 Result.
 
 
-![1](https://github.com/alururamesh521/ContestAlertBot-Dante/assets/142136138/c883756b-b11b-4213-8440-4b7072172341)
+<div style="display: flex;">
+    <img src="https://github.com/alururamesh521/ContestAlertBot-Dante/assets/142136138/c883756b-b11b-4213-8440-4b7072172341" style="width: 150px; height: auto; margin-right: 10px;">
+    <img src="https://github.com/alururamesh521/ContestAlertBot-Dante/assets/142136138/cc293920-ecbe-4d47-88da-0469565315eb" style="width: 150px; height: auto;">
+</div>
 
-![2](https://github.com/alururamesh521/ContestAlertBot-Dante/assets/142136138/cc293920-ecbe-4d47-88da-0469565315eb)
 
 
 
