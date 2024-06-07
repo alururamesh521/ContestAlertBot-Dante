@@ -1,6 +1,9 @@
 # Upcoming Coding Contests Bot
 
-![ContestAlertBot Logo](https://github.com/alururamesh521/ContestAlertBot-Dante/assets/142136138/cc293920-ecbe-4d47-88da-0469565315eb)
+<div style="display: flex;">
+    <img src="https://github.com/alururamesh521/ContestAlertBot-Dante/assets/142136138/c883756b-b11b-4213-8440-4b7072172341" style="width: 150px; height: auto; margin-right: 10px;">
+    <img src="https://github.com/alururamesh521/ContestAlertBot-Dante/assets/142136138/cc293920-ecbe-4d47-88da-0469565315eb" style="width: 150px; height: auto;">
+</div>
 
 **Upcoming Coding Contests Bot** is a Discord bot designed to keep programmers informed about upcoming coding contests. It automatically fetches and posts details about contests from popular competitive programming platforms like LeetCode, Codeforces, CodeChef, and GeeksforGeeks. The bot ensures timely updates by posting contest details in a designated Discord channel as soon as they become available.
 
