@@ -8,7 +8,7 @@ import json
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 TOKEN = 'token'  # Replace with your bot token
-CHANNEL_ID = channel_id    # Replace with your channel ID
+CHANNEL_ID = [ channel_ids]  # Replace with your channel IDs
 
 
 def fetch_upcoming_leetcode_contests():
@@ -70,16 +70,21 @@ async def sleep_time(contest, dict_of_contests, channel):
     now = datetime.datetime.now()
     remaining_seconds = (contest-now).total_seconds()-3600
     if remaining_seconds > 0:
-        await asyncio.sleep(remaining_seconds)
-        await channel.send(f"**Contest in 60min** \n\n{dict_of_contests[contest]}")
+        if dict_of_contests[contest] ==" we are done with this week's contests ":
+            await asyncio.sleep(remaining_seconds)
+            await channel.send("**We are done with the contests of the previous week**")
+        else:
+            await asyncio.sleep(remaining_seconds)
+            await channel.send(f"@everyone\n**Contest in 60min** \n\n{dict_of_contests[contest]}")
     else:
         print(f"Contest '{contest}' has already started or is within 60 minutes.")
 
 
-async def specific_contest_remainder(dict_of_contests, channel):
+async def specific_contest_remainder(dict_of_contests, channels):
     tasks = []
     for contest in dict_of_contests.keys():
-        tasks.append(asyncio.create_task(sleep_time(contest, dict_of_contests.copy(), channel)))
+        for channel in channels:
+            tasks.append(asyncio.create_task(sleep_time(contest, dict_of_contests.copy(), channel)))
 
     await asyncio.gather(*tasks)
 
@@ -100,13 +105,15 @@ async def on_ready():
     print(f'Logged in as {client.user}')
     while True:
         dict_of_contests = dict()
-        channel = client.get_channel(CHANNEL_ID)
-        if channel:
+        channels = []
+        for i in CHANNEL_ID:
+            channels.append(client.get_channel(i))
+        if channels:
             leetcode_contests = fetch_upcoming_leetcode_contests()
             codeforces_contests = fetch_upcoming_codeforces_contests()
             codechef_contests = fetch_upcoming_codechef_contests()
             geeksforgeeks_contests = fetch_upcoming_geeksforgeeks_contests()
-            upcoming_contests_message = "**Upcoming Coding Contests This Week**\n\n"
+            upcoming_contests_message = "@everyone \n**Upcoming Coding Contests This Week**\n\n"
             now = datetime.datetime.now()
             if leetcode_contests:
                 upcoming_contests_message += "__LeetCode Contests__\n"
@@ -143,7 +150,6 @@ async def on_ready():
                     contest_info = f"**Name:** {contest['contest_name']}\n**Start Time:** {start_time}\n**Link:** https://www.codechef.com/{contest['contest_code']}\n"
                     upcoming_contests_message += contest_info + "\n"
                     dict_of_contests[datetime.datetime.strptime(contest['contest_start_date'], '%d %b %Y %H:%M:%S')] = contest_info
-
             if geeksforgeeks_contests:
                 upcoming_contests_message += "__GeeksforGeeks Contests__\n"
                 for contest in geeksforgeeks_contests:
@@ -155,17 +161,22 @@ async def on_ready():
                         contest_info = f"**Name:** {contest.get('name', '')}\n**Start Time:** {start_time}\n**Link:** https://practice.geeksforgeeks.org/contest/{contest.get('slug', '')}\n"
                         upcoming_contests_message += contest_info + "\n"
                         dict_of_contests[datetime.datetime.strptime(contest.get('start_time', ''), '%Y-%m-%dT%H:%M:%S')] = contest_info
+                        new_notification = datetime.datetime.strptime(contest.get('start_time', ''), '%Y-%m-%dT%H:%M:%S')+ datetime.timedelta(hours= 15)
+                        dict_of_contests[new_notification] = " we are done with this week's contests "
                     else:
                         continue
             if upcoming_contests_message.strip() == "**Upcoming Coding Contests**":
                 upcoming_contests_message += "No upcoming contests found."
-            await channel.send(upcoming_contests_message)
+            for channel in channels:
+                await channel.send(upcoming_contests_message)
             list_of_timings = [i for i in dict_of_contests.keys()]
             list_of_timings.sort()
             dict_of_contests1 = dict()
             for i in list_of_timings:
                 dict_of_contests1[i] = dict_of_contests[i]
-            await specific_contest_remainder(dict_of_contests1, channel)
+
+            await specific_contest_remainder(dict_of_contests1, channels)
+
         else:
             print(f'Channel with ID {CHANNEL_ID} not found.')
 
