@@ -5,6 +5,7 @@ import datetime
 import json
 
 
+
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 TOKEN = 'token'  # Replace with your bot token
